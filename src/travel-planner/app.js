@@ -16,6 +16,8 @@ var app = express();
 // sequelize and session cookie setup
 
 const sequelize = require("./config/connection");
+
+/* session code commentented out till sequelize is functional to isolate issues*/ 
 // const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 // const sess = {
