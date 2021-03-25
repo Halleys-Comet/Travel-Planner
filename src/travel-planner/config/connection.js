@@ -10,5 +10,11 @@ const sequelize = process.env.JAWSDB_URL
       dialect: 'mysql',
       port: 3306
     });
-
+    try {
+      async function dbCheck(){ await sequelize.authenticate();}
+      dbCheck();
+      console.log('Sequelize connection has been established successfully.');
+    } catch (error) {
+      console.error('Sequelize was unable to connect to the database:', error);
+    }
 module.exports = sequelize;
