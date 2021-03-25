@@ -12,8 +12,9 @@ const sequelize = process.env.JAWSDB_URL
     });
     try {
       async function dbCheck(){ await sequelize.authenticate();}
-      console.log('Connection has been established successfully.');
+      dbCheck();
+      console.log('Sequelize connection has been established successfully.');
     } catch (error) {
-      console.error('Unable to connect to the database:', error);
+      console.error('Sequelize was unable to connect to the database:', error);
     }
 module.exports = sequelize;
