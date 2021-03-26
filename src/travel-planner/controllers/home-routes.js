@@ -5,7 +5,7 @@ const router = require('express').Router();
 router.get('/', (req, res) => {
   console.log('======================');
 
-    res.render('index', {title:'travel planner'})
+    res.render('homepage', {title:'travel planner'})
   });
 // });
 
