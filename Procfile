@@ -1,0 +1,1 @@
+web: node src/travel-planner/bin/www
