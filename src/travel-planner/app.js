@@ -5,8 +5,9 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const session = require('express-session');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+// ! Delete after additional verification
+// var indexRouter = require('./routes/index');
+// var usersRouter = require('./routes/users');
 
 const hbs = require("express-handlebars");
 const hbshelpers = require("handlebars-helpers");
