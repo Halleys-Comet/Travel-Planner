@@ -1,1 +1,1 @@
-web: node src/travel-planner/bin/www
+web: node ./bin/www
