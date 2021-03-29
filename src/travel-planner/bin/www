@@ -11,7 +11,7 @@
  /**
   * Get port from environment and store in Express.
   */
-//  !! TEMP CHANGE TO 8001
+//  !! TEMP CHANGE TO 8000
  var port = normalizePort(process.env.PORT || '8000');
   console.log('App listening on PORT ' + port);
  app.set('port', port);
