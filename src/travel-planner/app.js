@@ -3,9 +3,11 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const session = require('express-session');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+// ! Delete after additional verification
+// var indexRouter = require('./routes/index');
+// var usersRouter = require('./routes/users');
 
 const hbs = require("express-handlebars");
 const hbshelpers = require("handlebars-helpers");
@@ -19,19 +21,19 @@ var app = express();
 const sequelize = require("./config/connection");
 
 /* session code commentented out till sequelize is functional to isolate issues*/ 
-// const SequelizeStore = require('connect-session-sequelize')(session.Store);
+const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
-// const sess = {
-//   secret: 'Super secret secret',
-//   cookie: {},
-//   resave: false,
-//   saveUninitialized: true,
-//   store: new SequelizeStore({
-//     db: sequelize
-//   })
-// };
+const sess = {
+  secret: process.env.SESS_SECRET,
+  cookie: {},
+  resave: false,
+  saveUninitialized: true,
+  store: new SequelizeStore({
+    db: sequelize
+  })
+};
 
-// app.use(session(sess));
+app.use(session(sess));
 
 // view engine setup
 // app.set('views', path.join(__dirname, 'views'));
@@ -41,7 +43,7 @@ app.engine(
     helpers: multihelpers,
     partialsDir: ["views/partials"],
     extname: ".handlebars",
-    layoutsDir: "views",
+    layoutsDir: "views/partials",
     defaultLayout: "layout"
   })
 );
@@ -54,7 +56,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // app.use('/', indexRouter);
-app.use('/users', usersRouter);
+// app.use('/users', usersRouter);
 app.use(require('./controllers/'));
 
 // catch 404 and forward to error handler
