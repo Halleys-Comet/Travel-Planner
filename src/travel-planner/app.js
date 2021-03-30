@@ -11,6 +11,7 @@ const hbs = require("express-handlebars");
 const hbshelpers = require("handlebars-helpers");
 const multihelpers = hbshelpers();
 
+
 var app = express();
 
 // sequelize and session cookie setup
@@ -71,5 +72,6 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
 
 module.exports = app;
