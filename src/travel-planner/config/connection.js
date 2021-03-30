@@ -6,7 +6,10 @@ require('dotenv').config();
 let localDevMySQLDbOptions = {
   host: 'localhost',
   dialect: 'mysql',
-  port: 3306
+  port: 3306,
+  database: process.env.DB_NAME,
+  password: process.env.DB_PW,
+  username: process.env.DB_USER
 }
 
 let remoteMySQLDbOptions = {
@@ -24,10 +27,11 @@ let remoteMySQLDbOptions = {
 //       port: 3306
 //     });
 
-const sequelize = new Sequelize(process.env.CLEARDB_DATABASE_URL, remoteMySQLDbOptions);
+// const sequelize = new Sequelize(process.env.CLEARDB_DATABASE_URL, remoteMySQLDbOptions);
+const sequelize = new Sequelize(process.env.LOCAL_DB_URL, localDevMySQLDbOptions);
 
 // const sequelize = 
-//   new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PW, {
+//   new Sequelize(  {
 //       host: 'localhost',
 //       dialect: 'mysql',
 //       port: 3306
