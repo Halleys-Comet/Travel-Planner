@@ -3,7 +3,8 @@ const { QueryTypes } = require('sequelize');
 
 require('dotenv').config();
 
-let localDevMySQLDbOptions = {
+// sequelize options for mysql on this machine
+const localDevMySQLDbOptions = {
   host: 'localhost',
   dialect: 'mysql',
   port: 3306,
@@ -12,30 +13,48 @@ let localDevMySQLDbOptions = {
   username: process.env.DB_USER
 }
 
-let remoteMySQLDbOptions = {
+// sequelize options for cleardb
+const remoteMySQLDbOptions = {
   dialect: 'mysql',
   port: 3306,
   database: process.env.CLEARDB_DATABASE_DB_NAME
 }
 
-// create connection to our db
-// const sequelize = process.env.JAWSDB_URL
-//   ? new Sequelize(process.env.CLEARDB_DATABASE_URL, remoteMySQLDbOptions)
-//   : new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PW, {
-//       host: 'localhost',
-//       dialect: 'mysql',
-//       port: 3306
-//     });
+// Assign db based on env variable
 
+if (process.env.NODE_ENV == 'development') {
+  let dbUrl = process.env.LOCAL_DB_URL;
+  let dbOptions = localDevMySQLDbOptions;
+  console.log(`Current enviroment: ${process.env.NODE_ENV} so the local MySQL will be used.`);
+} else {
+  let dbUrl = process.env.CLEARDB_DATABASE_URL;
+  let dbOptions = localDevMySQLDbOptions;
+  console.log(`Current enviroment: ${process.env.NODE_ENV} so the  ClearDb will be used.`);
+}
+
+// switch (process.env.NODE_ENV) {
+//   case 'development':
+//     let dbUrl = process.env.LOCAL_DB_URL;
+//     let dbOptions = localDevMySQLDbOptions;
+//     console.log(`Current enviroment: ${process.env.NODE_ENV} so the local MySQL will be used.`);
+//     break;
+//   case 'production':
+//     let dbUrl = process.env.CLEARDB_DATABASE_URL;
+//     let dbOptions = localDevMySQLDbOptions;
+//     console.log(`Current enviroment: ${process.env.NODE_ENV} so the  ClearDb will be used.`);
+//   default:
+//     throw 'Correct development envoroment variable not found';
+//     break;
+// }
+// create connection to our db
+
+// Incomplete but works!  Each line works on it's own
 // const sequelize = new Sequelize(process.env.CLEARDB_DATABASE_URL, remoteMySQLDbOptions);
 const sequelize = new Sequelize(process.env.LOCAL_DB_URL, localDevMySQLDbOptions);
 
-// const sequelize = 
-//   new Sequelize(  {
-//       host: 'localhost',
-//       dialect: 'mysql',
-//       port: 3306
-//     });
+
+// const sequelize = new Sequelize(dbUrl, dbOptions);
+
 
 try {
   async function dbCheck() { await sequelize.authenticate(); }
