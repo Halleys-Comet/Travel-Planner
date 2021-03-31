@@ -43,8 +43,14 @@ try {
   async function dbCheck() { await sequelize.authenticate(); }
   dbCheck();
 
-  // check test table
-  const testQuery = sequelize.query("SELECT * FROM `test_table`", { type: QueryTypes.SELECT }).then((result) => console.log(` test query result ${JSON.stringify(result)}`));
+  // check for test_table in connected database
+  // const testQuery = sequelize.query("SELECT * FROM `test_table`", { type: QueryTypes.SELECT }).then((result) => console.log(` test query result ${JSON.stringify(result)}`));
+try {
+    // check for test_table in connected database
+  // const testQuery = sequelize.query("SELECT * FROM `test_table`", { type: QueryTypes.SELECT }).then((result) => console.log(` test query result ${JSON.stringify(result)}`));
+} catch (error) {
+  console.log(`DB Check for test_table in conneected database was unsecessful./n The table may not exist or you may not have created a dabase named after your heroku account`);
+}
 
   console.log('Sequelize connection has been established successfully.');
 } catch (error) {
