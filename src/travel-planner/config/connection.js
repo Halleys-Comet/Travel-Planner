@@ -20,24 +20,23 @@ const remoteMySQLDbOptions = {
   database: process.env.CLEARDB_DATABASE_DB_NAME
 }
 
+let dbUrl;
+let dbOptions;
+
 // Assign db based on env variable
 
 if (process.env.NODE_ENV == 'development') {
-  let dbUrl = process.env.LOCAL_DB_URL;
-  let dbOptions = localDevMySQLDbOptions;
+  dbUrl = process.env.LOCAL_DB_URL;
+   dbOptions = localDevMySQLDbOptions;
   console.log(`Current enviroment: ${process.env.NODE_ENV} so the local MySQL will be used.`);
 } else {
-  let dbUrl = process.env.CLEARDB_DATABASE_URL;
-  let dbOptions = localDevMySQLDbOptions;
+  dbUrl = process.env.CLEARDB_DATABASE_URL;
+  dbOptions = localDevMySQLDbOptions;
   console.log(`Current enviroment: ${process.env.NODE_ENV} so the  ClearDb will be used.`);
 }
 
-// Incomplete but works!  Each line works on it's own
-const sequelize = new Sequelize(process.env.CLEARDB_DATABASE_URL, remoteMySQLDbOptions);
-// const sequelize = new Sequelize(process.env.LOCAL_DB_URL, localDevMySQLDbOptions);
-
-
-// const sequelize = new Sequelize(dbUrl, dbOptions);
+// create seqeulize instance
+const sequelize = new Sequelize(dbUrl, dbOptions);
 
 
 try {
