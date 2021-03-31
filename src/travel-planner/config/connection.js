@@ -32,25 +32,9 @@ if (process.env.NODE_ENV == 'development') {
   console.log(`Current enviroment: ${process.env.NODE_ENV} so the  ClearDb will be used.`);
 }
 
-// switch (process.env.NODE_ENV) {
-//   case 'development':
-//     let dbUrl = process.env.LOCAL_DB_URL;
-//     let dbOptions = localDevMySQLDbOptions;
-//     console.log(`Current enviroment: ${process.env.NODE_ENV} so the local MySQL will be used.`);
-//     break;
-//   case 'production':
-//     let dbUrl = process.env.CLEARDB_DATABASE_URL;
-//     let dbOptions = localDevMySQLDbOptions;
-//     console.log(`Current enviroment: ${process.env.NODE_ENV} so the  ClearDb will be used.`);
-//   default:
-//     throw 'Correct development envoroment variable not found';
-//     break;
-// }
-// create connection to our db
-
 // Incomplete but works!  Each line works on it's own
-// const sequelize = new Sequelize(process.env.CLEARDB_DATABASE_URL, remoteMySQLDbOptions);
-const sequelize = new Sequelize(process.env.LOCAL_DB_URL, localDevMySQLDbOptions);
+const sequelize = new Sequelize(process.env.CLEARDB_DATABASE_URL, remoteMySQLDbOptions);
+// const sequelize = new Sequelize(process.env.LOCAL_DB_URL, localDevMySQLDbOptions);
 
 
 // const sequelize = new Sequelize(dbUrl, dbOptions);
