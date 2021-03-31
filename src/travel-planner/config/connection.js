@@ -45,7 +45,7 @@ try {
   dbCheck();
 
   // check test table
-  const testQuery = sequelize.query("SELECT * FROM `test_table`", { type: QueryTypes.SELECT }).then((result) => console.log(` test query result ${JSON.stringify(result)}`));
+  // const testQuery = sequelize.query("SELECT * FROM `test_table`", { type: QueryTypes.SELECT }).then((result) => console.log(` test query result ${JSON.stringify(result)}`));
 
   console.log('Sequelize connection has been established successfully.');
 } catch (error) {
