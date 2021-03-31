@@ -20,32 +20,37 @@ const remoteMySQLDbOptions = {
   database: process.env.CLEARDB_DATABASE_DB_NAME
 }
 
+let dbUrl;
+let dbOptions;
+
 // Assign db based on env variable
 
 if (process.env.NODE_ENV == 'development') {
-  let dbUrl = process.env.LOCAL_DB_URL;
-  let dbOptions = localDevMySQLDbOptions;
+  dbUrl = process.env.LOCAL_DB_URL;
+   dbOptions = localDevMySQLDbOptions;
   console.log(`Current enviroment: ${process.env.NODE_ENV} so the local MySQL will be used.`);
 } else {
-  let dbUrl = process.env.CLEARDB_DATABASE_URL;
-  let dbOptions = localDevMySQLDbOptions;
+  dbUrl = process.env.CLEARDB_DATABASE_URL;
+  dbOptions = localDevMySQLDbOptions;
   console.log(`Current enviroment: ${process.env.NODE_ENV} so the  ClearDb will be used.`);
 }
 
-// Incomplete but works!  Each line works on it's own
-const sequelize = new Sequelize(process.env.CLEARDB_DATABASE_URL, remoteMySQLDbOptions);
-// const sequelize = new Sequelize(process.env.LOCAL_DB_URL, localDevMySQLDbOptions);
-
-
-// const sequelize = new Sequelize(dbUrl, dbOptions);
+// create seqeulize instance
+const sequelize = new Sequelize(dbUrl, dbOptions);
 
 
 try {
   async function dbCheck() { await sequelize.authenticate(); }
   dbCheck();
 
-  // check test table
-  const testQuery = sequelize.query("SELECT * FROM `test_table`", { type: QueryTypes.SELECT }).then((result) => console.log(` test query result ${JSON.stringify(result)}`));
+  // check for test_table in connected database
+  // const testQuery = sequelize.query("SELECT * FROM `test_table`", { type: QueryTypes.SELECT }).then((result) => console.log(` test query result ${JSON.stringify(result)}`));
+try {
+    // check for test_table in connected database
+  const testQuery = sequelize.query("SELECT * FROM `test_table`", { type: QueryTypes.SELECT }).then((result) => console.log(`Test query result: ${JSON.stringify(result)}`));
+} catch (error) {
+  console.log(`DB Check for test_table in conneected database was unsecessful./n The table may not exist or you may not have created a dabase named after your heroku account`);
+}
 
   console.log('Sequelize connection has been established successfully.');
 } catch (error) {

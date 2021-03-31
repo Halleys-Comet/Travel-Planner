@@ -1,6 +1,8 @@
 var getTravelCountry = function(country) {
     // Get users country 
     fetch("https://travelbriefing.org/" + country + "?format=json")
+    .then(res => res.json())
+    .then(data => console.log(data))
     console.log("county name was called");
 };
 
