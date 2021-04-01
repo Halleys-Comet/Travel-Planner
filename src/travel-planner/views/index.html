@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Planner</title>
+
+</head>
+
+<body>
+    <heardr class="hero">
+        <h1 class="app-title">Travel Planner</h1>
+    </heardr>
+
+    <main>
+        <div class="col-12 col-md-3">
+            <div class="card">
+                <h2>Search for Country: <input type="text" id="searchCountry"></h2>
+                <button onclick="myCountry()" class="btn">Search</button>
+                <div id="response-container"></div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="countryName"></div>
+                <h2 class="Country"> <span id="repo-search-county"></span></h2>
+                <div id="country-container"></div>
+                <div id="countrySearch-container" class="w-25"></div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="countryFlag"></div>
+                <h2 class="Flag"> <span id="repo-search-flag"></span></h2>
+                <div id="flag-container"></div>
+                <div id="flagSearch-container" class="w-25"></div>
+            </div>
+        </div>
+
+
+
+
+
+
+    </main>
+
+
+    
+
+    <script src="../controllers/api/homepage.js"></script>
+    
+</body>
+
+</html>
+
