@@ -43,8 +43,8 @@ app.engine(
     helpers: multihelpers,
     partialsDir: ["views/partials"],
     extname: ".handlebars",
-    layoutsDir: "views/partials",
-    defaultLayout: "layout"
+    layoutsDir: "views/layouts",
+    defaultLayout: "main"
   })
 );
 app.set("view engine", "handlebars");
