@@ -11,6 +11,26 @@ function myTavel(countryName) {
     }
 
     var countryURL = 'https://travelbriefing.org/' + country + '?format=json';
+
+    // location.href = "/api/searchcountry/" + country; --frontend javascript
+    // router.get("/api/searchcountry/:country") --routes in the server
+   // var countryURL = 'https://travelbriefing.org/' + country + '?format=json'; --router call
+// axios.get(countryURL)
+//    .then(function(res) {
+//        return res.render("page", {data: res});
+//    })
+// then you can copy you index.html to a handlebars page and change the templates to show the info
+// example:
+//   <p>this is an example: {data.xxxx}</p>
+
+// axios.get("https://cors-anywhere.herokuapp.com/https://www.api-football.com/demo/api/v2/leagueTable/" + league_id)
+//                .then(response => {
+//                  this.info = response.data.api.standings[0];
+//                  console.log('updated info', response.data.api.standings[0]); // can you share the value here ?
+//                }); ----put in controller routs
+
+
+
     console.log(countryURL);
     var countryInfo = fetch(countryURL)
     .then(function(res) {
@@ -23,10 +43,10 @@ function myTavel(countryName) {
 
     // Flag icons
     var flagEl = document.createElement('img')
-    flagEl.setAttribute('src', 'https://www.countryflags.io/' + names.ios2 + 'shiny/64.png')
+    flagEl.setAttribute('src', 'https://www.countryflags.io/' + data.names.ios2 + 'shiny/64.png')
     flagIconEl.setAttribute("alt", "Country Flag")
     flagIconEl.setAttribute("id", "cuntryFlag")
-    reposContainer.appendChiled(flagIconEl)
+    reposContainer.appendChiled(flagEl)
     console.log("flag was searched");
 
 
