@@ -33,7 +33,7 @@ const sess = {
   })
 };
 
-app.use(session(sess));
+// app.use(session(sess));
 
 // view engine setup
 // app.set('views', path.join(__dirname, 'views'));
@@ -43,8 +43,8 @@ app.engine(
     helpers: multihelpers,
     partialsDir: ["views/partials"],
     extname: ".handlebars",
-    layoutsDir: "views/layouts",
-    defaultLayout: "main"
+    layoutsDir: "views/partials",
+    defaultLayout: "layout"
   })
 );
 app.set("view engine", "handlebars");

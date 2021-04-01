@@ -29,6 +29,7 @@ if (process.env.NODE_ENV == 'development') {
   dbUrl = process.env.LOCAL_DB_URL;
    dbOptions = localDevMySQLDbOptions;
   console.log(`Current enviroment: ${process.env.NODE_ENV} so the local MySQL will be used.`);
+  console.log(`Current url: ${process.env.LOCAL_DB_URL}`);
 } else {
   dbUrl = process.env.CLEARDB_DATABASE_URL;
   dbOptions = localDevMySQLDbOptions;
