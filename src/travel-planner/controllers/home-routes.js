@@ -1,11 +1,11 @@
 const router = require('express').Router();
-// const sequelize = require('../config/connection');
+const sequelize = require('../config/connection');
 
 // get all posts for homepage
 router.get('/', (req, res) => {
   console.log('======================');
 
-    res.render('index', {title:'travel planner'})
+    res.render('homepage', {title:'travel planner'})
   });
 // });
 

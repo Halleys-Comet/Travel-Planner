@@ -5,12 +5,14 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const session = require('express-session');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+// ! Delete after additional verification
+// var indexRouter = require('./routes/index');
+// var usersRouter = require('./routes/users');
 
 const hbs = require("express-handlebars");
 const hbshelpers = require("handlebars-helpers");
 const multihelpers = hbshelpers();
+
 
 var app = express();
 
@@ -72,5 +74,6 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
 
 module.exports = app;
