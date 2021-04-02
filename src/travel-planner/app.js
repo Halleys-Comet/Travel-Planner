@@ -33,7 +33,7 @@ const sess = {
   })
 };
 
-app.use(session(sess));
+// app.use(session(sess));
 
 // view engine setup
 // app.set('views', path.join(__dirname, 'views'));
